@@ -1,9 +1,6 @@
 /* jshint node: true */
 'use strict';
 
-var path = require('path');
-var Funnel = require('broccoli-funnel');
-
 module.exports = {
   name: 'ember-cli-font-awesome',
 
@@ -18,9 +15,8 @@ module.exports = {
     }
 
     if (options.includeFontAwesomeAssets) {
-      if (!options.useScss) {
-        target.import(target.bowerDirectory + "/font-awesome/css/font-awesome.css");
-      }
+
+      target.import(target.bowerDirectory + "/font-awesome/css/font-awesome.css");
 
       target.import(target.bowerDirectory + "/font-awesome/fonts/fontawesome-webfont.eot", { destDir: "fonts" });
       target.import(target.bowerDirectory + "/font-awesome/fonts/fontawesome-webfont.svg", { destDir: "fonts" });
@@ -29,15 +25,5 @@ module.exports = {
       target.import(target.bowerDirectory + "/font-awesome/fonts/fontawesome-webfont.woff2", { destDir: "fonts" });
       target.import(target.bowerDirectory + "/font-awesome/fonts/FontAwesome.otf", { destDir: "fonts" });
     }
-  },
-
-  treeForStyles: function() {
-    var fontAwesomePath = path.join(this.app.bowerDirectory, 'font-awesome');
-    var fontAwesomeTree = new Funnel(this.treeGenerator(fontAwesomePath), {
-      srcDir: '/scss',
-      destDir: '/app/styles/font-awesome'
-    });
-
-    return fontAwesomeTree;
   }
 };
